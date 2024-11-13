@@ -1,0 +1,26 @@
+By replacing the src parameter in the URL with a data: URI scheme (which encodes a payload in Base64), you're able to inject and execute JavaScript.
+This vulnerability occurs because the application fails to validate or sanitize the src parameter, allowing an attacker to load arbitrary data,
+including potentially harmful scripts.
+
+in this case we have the url
+http://10.14.60.12/?page=media&src=nsa
+
+the Data URLs are composed of four parts: a prefix (data:), a MIME type indicating the type of data, an optional base64 token if non-textual, and the data itself:
+
+data:[<media-type>][;base64],<data>
+* we used the [text/html] as mediatype /MIMEtype
+* base64 encripting methode (optional)
+* a script to inject 
+    <script>alert('you got hacked ')</script>
+    after encrypt we got "PHNjcmlwdD5hbGVydCgneW91IGdvdCBoYWNrZWQgJyk8L3NjcmlwdD4="
+now all we have to do is to replace the the url and here we go
+    http://10.14.60.12/?page=media&src=data:text/html;base64,PHNjcmlwdD5hbGVydCgneW91IGdvdCBoYWNrZWQgJyk8L3NjcmlwdD4=
+
+
+
+how to avoid:
+we can Use HTTP-only Content Loading for Media
+If the application requires loading media content dynamically (e.g., images or videos), load it via an HTTP or HTTPS protocol. Avoid inline content (like data: URIs) which can be abused for XSS or other script injections.
+
+or Server-Side Filtering
+Ensure that the server sanitizes and validates the src parameter and only serves or redirects to trusted URLs
