@@ -1,0 +1,12 @@
+at the password recovry page you can inspect the submit button we fund the section hidden input 
+
+<form action="#" method="POST">
+	<input type="hidden" name="mail" value="webmaster@borntosec.com" maxlength="15">
+	<input type="submit" name="Submit" value= "Submit">
+</form>
+
+we can simply set the mail and send the recovery password
+
+Ho wto avoid:
+
+input data must be handled at the backend !!

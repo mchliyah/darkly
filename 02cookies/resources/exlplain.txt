@@ -1,0 +1,11 @@
+at home page or survey (page) after inspect and using the document.cookie command we can see the cookie "I_am_admin=68934a3e9455fa72420237eb05902327"
+
+after finding coding type which is the MD5 and decrypt the value of I_am_admin we can see it set to false 
+
+we change the value to true by encripting it we got "b326b5062b2f0e69046810717534cb09"
+
+we simply set at the consol document.cookie="I_am_admin=b326b5062b2f0e69046810717534cb09" and here we go 
+
+how to avoid:
+
+simply do not use the cookie to define admins.
