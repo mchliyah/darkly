@@ -3,7 +3,5 @@
 
 
 still 
-- localfile inclusion 
-- idor
-- file upload
 - file disclosure
+- hidden file

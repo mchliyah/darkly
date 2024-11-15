@@ -9,4 +9,4 @@ we try to show the fields of the table related to images in the database:
 
 now we know diffrent fields in the table so we can use them (password, first_name, name, user_id, country, Commentaire, id_comment, comment, ...)
 
-1 OR 1=1 UNION SELECT Commentaire, fortytwo FROM users
+1 OR 1=1 UNION SELECT Commentaire, comment FROM users
