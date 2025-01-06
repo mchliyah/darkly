@@ -1,7 +1,0 @@
-at the survey page we can see after inspect for every the slots selection part
-at the value we can put any number that can make the selected name jump to the top of the list or something like that 
-we can say instead of seting 10 point as max you can set 999999 , i do not know how many things it can affect but sure it is giving the option to type any number adn not respection the survey methodology
-
-how to avoid:
-
-you can handle values at the backend (stricted to range [0, 10]), only slot selection handled in the front
