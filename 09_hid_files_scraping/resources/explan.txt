@@ -1,8 +1,0 @@
-after making the subdirectorys search we found the path /robot.txt which contain some informations like /.hidden 
-under this path there is a lot of subdirectorys which contain README.md files 
-
-so a little of webscraping using a simple pyton script whech iterate over subdires loking for README , the first test used to print the content of files when found we have noticed that some words are mostly allways 
-found in the files so as optinosation we can exclude file containing this words and run the test one more time storing the output in a result file and voila .
-
-how to avoid :
-

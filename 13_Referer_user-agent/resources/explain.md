@@ -11,11 +11,6 @@ Send an HTTP request with the following headers:
 
 GET /index.php?page=e43ad1fdc54babe674da7c7b8f0127bde61de3fbe01def7d00f151c2fcca6d1c HTTP/1.1 Host: 192.168.0.30 User-Agent: ft_bornToSec Accept: text/html,application/xhtml+xml,application/xml;q=0.9,/;q=0.8 Accept-Language: fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3 Accept-Encoding: gzip, deflate Referer: https://www.nsa.gov/ Connection: keep-alive Cookie: I_am_admin=68934a3e9455fa72420237eb05902327 Upgrade-Insecure-Requests: 1 Cache-Control: max-age=0, no-cache Pragma: no-cache
 
-bash
-Toujours afficher les détails
-
-Copier le code
-
 Alternatively, use the following `curl` command:
 
 ```bash
