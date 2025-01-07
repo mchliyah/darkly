@@ -1,47 +1,46 @@
-# Exploit: Cookie Manipulation to Gain Admin Access
+# Flag Documentation: Cookie Flag
 
-## Description
-This exploit demonstrates how a poorly implemented cookie-based authentication mechanism can be bypassed by manipulating cookie values.
+## Challenge Overview
+This challenge involves manipulating a cookie to escalate privileges from a regular user to an admin, allowing access to a hidden flag.
 
-### Case Example
-1. Observed Cookie:
-   On the home page or survey page, inspecting the cookies using `document.cookie` in the browser console reveals:
-I_am_admin=68934a3e9455fa72420237eb05902327
+## Tools Needed
+- Browser Developer Tools (DevTools)
+- MD5 Hash Generator (e.g., [md5online.org](https://www.md5online.org/))
 
-2. Analysis:
-- Identified the encoding type as MD5.
-- Decrypting the value revealed it was set to `false`.
+## Steps to Solve
 
-3. Manipulation:
-- Changed the value to `true` by encrypting it into MD5 format:
-  ```
-  b326b5062b2f0e69046810717534cb09
-  ```
+1. **Initial Observation**:
+   - Opened the browser's Developer Tools (accessible via `F12` or `Ctrl+Shift+I`) and navigated to the **Application** tab.
+   - Under the **Storage** section, located the `Cookies` entry and selected the cookie corresponding to the website.
+   - Found a cookie named `i_am_admin` with the value:
+     ```
+     68934a3e9455fa72420237eb05902327
+     ```
 
-- Updated the cookie using the browser console:
-  ```javascript
-  document.cookie = "I_am_admin=b326b5062b2f0e69046810717534cb09";
-  ```
+2. **Reconnaissance**:
+   - Decrypted the cookie value using an MD5 hash decryption tool and determined it represents the string:
+     ```
+     false
+     ```
 
-4. Result:
-- Gained admin access.
+3. **Exploitation**:
+   - To gain admin privileges, generated the MD5 hash for the string `true` using an MD5 hash generator. The resulting hash was:
+     ```
+     b326b5062b2f0e69046810717534cb09
+     ```
+   - In the **Application** tab of Developer Tools, replaced the value of the `i_am_admin` cookie with the new hash.
 
-## How to Avoid
+4. **Flag Extraction**:
+   - Reloaded the page after changing the cookie value.
+   - A pop-up appeared displaying the flag:
+     ```
+     df2eb4ba34ed059a1e3e89ff4dfc13445f104a1a52295214def1c4fb1693a5c3
+     ```
 
-### 1. Avoid Using Cookies to Define Privileges
-- Cookies are client-side and can be manipulated. Avoid using them to define admin or user roles.
+## How to Avoid This Breach in a Website
+1. **Do Not Use Cookies for Privilege Management**: Avoid storing user roles or access controls in cookies that can be modified on the client side.
+2. **Implement Server-Side Authorization**: Use server-side logic to enforce access control and validate user privileges for each request.
+3. **Secure Cookies**: Always mark cookies with `HttpOnly` and `Secure` attributes to minimize client-side access and interception risks.
+4. **Use Stronger Hashing**: Replace MD5 with stronger algorithms like SHA-256 and incorporate a salt to prevent hash tampering and collisions.
+5. **Conduct Security Testing**: Regularly test for vulnerabilities related to cookie manipulation and privilege escalation through penetration testing tools and methods.
 
-### 2. Implement Secure Authentication Mechanisms
-- Use server-side session management for user authentication and roles.
-
-### 3. Encrypt and Sign Cookies
-- If cookies must be used, encrypt their contents and validate them with a server-side signature to prevent tampering.
-
-### 4. Validate Roles Server-Side
-- Always validate user roles on the server-side before granting access to sensitive features or data.
-
-### 5. Secure Cookie Flags
-- Set cookies with the `HttpOnly` and `Secure` flags to reduce their exposure to JavaScript and prevent transmission over unencrypted connections.
-
-### 6. Regular Security Audits
-- Periodically review the application for vulnerabilities like improper use of cookies.
