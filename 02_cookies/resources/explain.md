@@ -5,7 +5,7 @@ This challenge involves manipulating a cookie to escalate privileges from a regu
 
 ## Tools Needed
 - Browser Developer Tools (DevTools)
-- MD5 Hash Generator (e.g., [md5online.org](https://www.md5online.org/))
+- MD5 Hash Generator (e.g., [md5online.org](https://md5decrypt.net/))
 
 ## Steps to Solve
 
