@@ -38,5 +38,11 @@ This project provides an introduction to **ethical hacking** and **web applicati
 
 ---
 
+## tools for help
+
+- https://crackstation.net/
+- https://www.cachesleuth.com/multidecoder/
+- https://portswigger.net/burp
+
 Good luck and have fun!
 
